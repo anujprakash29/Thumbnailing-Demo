@@ -94,12 +94,9 @@ class ThumbnailGenerator extends Thread
         String out = name.replaceFirst(".([a-z]+)$", "_thumb." + ext);
         System.out.println(name + " --> " + out);
         
-//        File thumbnail = new File("thumbs\\",  out);
-//        thumbnail.createNewFile(); 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bi, ext, baos);
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
-//        ImageIO.write(bi, ext, thumbnail);
         
         ImageUploadRepository imageRepo = new ImageUploadRepository();
 		imageRepo.saveThumbnails(is, out);

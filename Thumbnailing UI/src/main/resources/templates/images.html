@@ -5,28 +5,10 @@ img {max-height:125px; margin:3px; border:1px solid #dedede;}
 <body>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript" src="js/main.js"></script>
 
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "http://localhost:8080/imagelist",
-  "method": "GET",
-  "headers": {}
-}
 
-$.ajax(settings).done(function (data) {
-  	console.log(data);
-
-	$.each( data.images, function( i, image ) {
-		$("#thumbs").append('<a href="'+image.imageurl+'"> <img src="'+image.thumburl+'" id="'+image.filename+'"/></a>');
-	
-	});
-});
-
-</script>
-
-<a href="http://localhost:8080">Go Back</a>
+<a href="http://localhost:8080">Home</a>
 <h2>Photo Gallery</h2>
 <div style="clear:both;"/>
 <div id="thumbs"/>
