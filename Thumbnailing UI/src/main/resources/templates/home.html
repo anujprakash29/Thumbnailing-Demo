@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<a href="http://localhost:8080/images">Images</a>
+<h1>Multiple Images Thumbnailing Demo</h1>
+
+<form method="POST" enctype="multipart/form-data" id="fileUploadForm" action="http://localhost:8081/uploadimage">
+    <input type="file" name="files" multiple="multiple" accept="image/*"/><br/><br/>
+    <input type="submit" value="Upload" id="btnSubmit"/>
+</form>
+
+
+<div th:if="${message}">
+		<h3 th:text="${message}"/>
+</div>
+
+
+<form method="POST" id="deleteImages" action="http://localhost:8081/deleteimages">	
+    <input type="submit" value="Delete All Files" id="btnDelete"/>
+</form>
+
+</body>
+</html>

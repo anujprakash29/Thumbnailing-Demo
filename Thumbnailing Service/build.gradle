@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'thumbnailing-service'
+    version =  '0.1.0'
+}
+
+springBoot {
+    mainClass = "com.servicenow.config.Application"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'http://repo.spring.io/libs-milestone-local' }
+}
+
+ext {
+    jsonVersion = '20160212'
+    springVersion = '4.2.5.RELEASE'
+    springBootVersion = '1.5.4.RELEASE'
+    }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("com.googlecode.json-simple:json-simple:1.1.1")
+
+    compile "org.springframework.boot:spring-boot:${springBootVersion}"
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile ("org.springframework.boot:spring-boot-starter-jetty:${springBootVersion}") {
+        exclude group: 'org.eclipse.jetty.websocket'
+    }
+    compile "org.json:json:${jsonVersion}"
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '1.3'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile group: 'org.apache.commons', name: 'commons-io', version: '1.3.2'    
+    //compile "org.hibernate:hibernate-core:5.2.10.Final"
+    //compile group: 'com.h2database', name: 'h2', version: '1.0.60'
+    //compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
